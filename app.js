@@ -10,6 +10,10 @@ app.use(helmet());
 // for serving static files
 app.use(express.static('public'));
 
+// For views
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 // for parsing input into req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
