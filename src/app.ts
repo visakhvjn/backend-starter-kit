@@ -1,7 +1,12 @@
 import express from 'express';
 import helmet from 'helmet';
 
+import connectDb from './config/db.config';
+
 const app = express();
+
+// connect to database
+connectDb();
 
 // for handling security vulnerabilities
 // by setting HTTP headers appropriately
