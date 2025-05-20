@@ -2,32 +2,25 @@
 
 A boilerplate for building Express.js applications with essential middleware pre-configured.
 
-## Features
-
-- **Helmet**: Enhances security by setting HTTP headers.
-- **Static File Serving**: Serves files from the `public` directory.
-- **Body Parsing**: Parses incoming request bodies in JSON and URL-encoded formats.
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-
 ### Installation
 
-1. Clone the repository:
+1. Create a repository by using this repository as a template like [here](https://github.com/new?template_name=backend-starter-kit&template_owner=visakhvjn)
+
+2. Clone the created repository into your local:
 
    ```bash
-   git clone <repository-url>
-   cd boiler-express
+   git clone <repository_url>
+
+   cd <cloned_folder>
    ```
 
-2. Install dependencies:
+3. Install dependencies:
+
    ```bash
    npm install
    ```
+
+4. Copy `.env.example` into `.env`
 
 ### Usage
 
@@ -37,21 +30,16 @@ A boilerplate for building Express.js applications with essential middleware pre
    npm start
    ```
 
-2. Open your browser and navigate to:
+2. For development mode:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to:
+
    ```
    http://localhost:3000
    ```
 
-## Project Structure
-
-```
-boiler-express/
-├── app.js         # Main application file
-├── public/        # Directory for static files
-├── package.json   # Project metadata and dependencies
-└── README.md      # Project documentation
-```
-
-## License
-
-This project is licensed under the MIT License.
+4. Give a star if this made your day easier.
