@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  api-service:
+    build: .
+    image: backend-starter-kit-api:1.0.0
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo-data:
