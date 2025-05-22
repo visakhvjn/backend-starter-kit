@@ -6,8 +6,11 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import { authenticateJWT } from './middleware/auth.middleware';
 import { checkUserExists } from './middleware/user.middleware';
+import { corsMiddleware } from './middleware/cors.middleware';
 
 const app = express();
+
+app.use(corsMiddleware);
 
 // connect to database
 connectDb();
