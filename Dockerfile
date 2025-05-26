@@ -1,4 +1,5 @@
-FROM node:slim
+# ---------------- BUILD STAGE -----------------
+FROM node:slim as builder
 
 # Set the working directory
 WORKDIR /app
@@ -14,6 +15,21 @@ COPY . .
 
 # Build the ts application
 RUN npm run build
+
+# ----------------- RUNTIME STAGE -----------------
+FROM node:slim as runtime
+
+# Set the working directory
+WORKDIR /app
+
+# Copy only the necessary files from the builder stage
+COPY --from=builder /app/package*.json ./
+
+# Install only production dependencies
+RUN npm install --omit=dev
+
+# Copy the built application from the builder stage
+COPY --from=builder /app/dist ./dist
 
 # Expose the port the app runs on
 EXPOSE 3000
