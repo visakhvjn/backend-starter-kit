@@ -7,10 +7,14 @@ import userRoutes from './routes/user.routes';
 import { authenticateJWT } from './middleware/auth.middleware';
 import { checkUserExists } from './middleware/user.middleware';
 import { corsMiddleware } from './middleware/cors.middleware';
+import { rateLimiter } from './middleware/rate-limit.middleware';
 
 const app = express();
 
 app.use(corsMiddleware);
+
+// limit api requests to prevent DDoS attacks
+app.use(rateLimiter);
 
 // connect to database
 connectDb();
