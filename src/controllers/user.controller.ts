@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import * as userService from '../services/user.service';
-import { CreateUserInput } from '../types/user.types';
+import { RegisterUserParams } from '../types/user.types';
 import * as jwtService from '../services/jwt.service';
 import {
 	BadRequestError,
@@ -11,7 +11,7 @@ import {
 
 export const createUser = async (req: Request, res: Response) => {
 	try {
-		const userData: CreateUserInput = req.body;
+		const userData: RegisterUserParams = req.body;
 		const user = await userService.createUser(userData);
 		res.status(201).json({ user });
 	} catch (error) {
