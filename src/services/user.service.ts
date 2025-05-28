@@ -1,7 +1,7 @@
 import UserModel, { IUser } from '../models/user.model';
 import bcrypt from 'bcrypt';
 import * as Errors from '../utils/errors.utils';
-import { CreateUserInput } from '../types/user.types';
+import { RegisterUserParams } from '../types/user.types';
 
 export const findUserById = async (id: string): Promise<IUser | null> => {
 	return UserModel.findById(id);
@@ -11,7 +11,9 @@ export const findUserByEmail = async (email: string): Promise<IUser | null> => {
 	return UserModel.findOne({ email });
 };
 
-export const createUser = async (userData: CreateUserInput): Promise<IUser> => {
+export const createUser = async (
+	userData: RegisterUserParams
+): Promise<IUser> => {
 	const { email, password, name } = userData;
 
 	// Check if user already exists
