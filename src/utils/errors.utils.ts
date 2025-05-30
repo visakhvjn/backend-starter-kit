@@ -45,6 +45,12 @@ export class InternalServerError extends AppError {
 	}
 }
 
+export class ServiceUnavailableError extends AppError {
+	constructor(message = 'Service Unavailable') {
+		super(message, 503);
+	}
+}
+
 export const handleError = (error: unknown, res: any) => {
 	if (error instanceof AppError) {
 		res.status(error.statusCode).json({ error: error.message });
