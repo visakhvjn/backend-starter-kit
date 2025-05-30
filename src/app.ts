@@ -2,6 +2,8 @@ import express from 'express';
 import helmet from 'helmet';
 
 import connectDb from './config/db.config';
+import { connectOpenAI } from './config/openai.config';
+
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import { authenticateJWT } from './middleware/auth.middleware';
@@ -18,6 +20,9 @@ app.use(rateLimiter);
 
 // connect to database
 connectDb();
+
+// connect to openai
+connectOpenAI();
 
 // for handling security vulnerabilities
 // by setting HTTP headers appropriately
