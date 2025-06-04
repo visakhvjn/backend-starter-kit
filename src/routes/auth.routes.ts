@@ -2,7 +2,11 @@ import express from 'express';
 import * as userController from '../controllers/user.controller';
 import dotenv from 'dotenv';
 import { validate } from '../middleware/zod.middleware';
-import { loginUserSchema, registerUserSchema } from '../types/user.types';
+import {
+	forgotPasswordSchema,
+	loginUserSchema,
+	registerUserSchema,
+} from '../types/user.types';
 
 dotenv.config();
 
@@ -14,5 +18,10 @@ router.post(
 	userController.createUser
 );
 router.post('/login', validate(loginUserSchema), userController.loginUser);
+router.post(
+	'/forgot-password',
+	validate(forgotPasswordSchema),
+	userController.forgotPassword
+);
 
 export default router;
