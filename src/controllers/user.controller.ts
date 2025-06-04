@@ -51,3 +51,34 @@ export const loginUser = async (req: Request, res: Response) => {
 		handleError(error, res);
 	}
 };
+
+export const forgotPassword = async (req: Request, res: Response) => {
+	try {
+		const { email } = req.body;
+
+		const user = await userService.findUserByEmail(email);
+
+		if (user) {
+			// generate a token valid for 15 mins.
+			const tokenDetails = await userService.generateTokenForForgotPassword();
+
+			// save the token.
+			const passwordResetToken = await userService.savePasswordResetToken({
+				email,
+				token: tokenDetails.token,
+				expiry: tokenDetails.expiry,
+			});
+
+			// send the token to the email.
+			await userService.sendPasswordResetEmail(
+				passwordResetToken.toObject()._id.toString()
+			);
+		}
+
+		res.status(200).json({
+			message: 'If the email exists, a password reset link has been sent.',
+		});
+	} catch (error) {
+		handleError(error, res);
+	}
+};
