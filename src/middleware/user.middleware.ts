@@ -4,7 +4,7 @@ import { AppError } from '../utils/errors.utils';
 
 export const checkUserExists = async (
 	req: Request,
-	res: Response,
+	_res: Response,
 	next: NextFunction
 ) => {
 	const user = await userService.findUserById((req.user as any).id);

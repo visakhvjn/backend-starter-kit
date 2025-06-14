@@ -6,7 +6,11 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"outDir": "./build",
-		"rootDir": "./src"
+		"rootDir": "./src",
+		"noUnusedParameters": true,
+		"noImplicitAny": true,
+		"removeComments": true,
+		"noEmitOnError": true
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "dist"]
